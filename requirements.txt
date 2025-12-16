@@ -1,0 +1,6 @@
+Flask==2.3.2
+pandas==2.0.3
+nepali-datetime==0.0.5
+Werkzeug==2.3.7
+openpyxl==3.1.2
+xlrd==2.0.1

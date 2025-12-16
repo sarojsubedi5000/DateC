@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trial Expired</title>
+    <style>
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .trial-container {
+            background: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 400px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        h1 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 25px;
+        }
+
+        .pay-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #ff5a00;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .pay-button:hover {
+            background-color: #e04a00;
+        }
+
+        .pay-button img {
+            width: 40px;
+            height: auto;
+        }
+
+        .contact {
+            margin-top: 15px;
+            color: #333;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="trial-container">
+        <h1>Trial Expired</h1>
+        <p>Your trial usage has reached the limit. To continue using the app, please pay below:</p>
+        <a href="https://esewa.com.np/" target="_blank" class="pay-button">
+            <img src="{{ url_for('static', filename='esewa-logo.png') }}" alt="eSewa Logo">
+            Pay with eSewa
+        </a>
+        <div class="contact">
+            Or pay manually to this number: <strong>9868132052</strong>
+        </div>
+        <br>
+        <a href="{{ url_for('login') }}" style="display:inline-block;margin-top:20px;background:#3498db;padding:10px 25px;border-radius:5px;color:#fff;text-decoration:none;transition:0.3s;">Back to Login</a>
+    </div>
+</body>
+</html>
