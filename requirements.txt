@@ -1,0 +1,7 @@
+Flask
+pandas
+openpyxl
+nepali-datetime
+qrcode
+Pillow
+Werkzeug
