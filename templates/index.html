@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 50px;
+            margin: 0;
+        }
+        .dashboard-container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            width: 800px; /* wider to fit two forms side by side */
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .forms-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .form-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 10px auto 15px auto;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        a.logout {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        a.logout:hover {
+            background-color: #c0392b;
+        }
+        .admin-link {
+            margin-top: 20px;
+        }
+        .admin-link a {
+            background-color: #3498db;
+        }
+        .admin-link a:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Welcome, {{ username }}</h2>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+
+        <div class="forms-row">
+            <div class="form-box">
+                <h3>Convert Nepali BS to AD</h3>
+                <form action="{{ url_for('convert_bs_to_ad') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" required>
+                    <button type="submit">Convert BS to AD</button>
+                </form>
+            </div>
+            <div class="form-box">
+                <h3>Convert AD to Nepali BS</h3>
+                <form action="{{ url_for('convert_ad_to_bs') }}" method="post" enctype="multipart/form-data">
+                    <input type="file" name="file" required>
+                    <button type="submit">Convert AD to BS</button>
+                </form>
+            </div>
+        </div>
+
+        {% if username == 'admin' %}
+            <div class="admin-link">
+                <a href="{{ url_for('admin') }}">Go to Admin Panel</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

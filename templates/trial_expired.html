@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trial Expired</title>
+</head>
+<body>
+    <h2>Trial Period Expired</h2>
+    <p>You have used the app 5 times. Please subscribe to continue using.</p>
+    <p>Scan the QR code below to subscribe:</p>
+    <img src="{{ url_for('static', filename=qr.split('/')[-1]) }}" alt="QR Code">
+    <p>After subscription, contact admin for activation.</p>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

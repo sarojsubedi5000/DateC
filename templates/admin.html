@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Admin Panel</h2>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger mb-3">Logout</a>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-info">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Usage Count</th>
+                <th>Subscribed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.usage_count }}</td>
+                <td>
+                    {% if user.is_subscribed %}
+                        <span class="badge bg-success">Yes</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark">No</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if not user.is_subscribed %}
+                        <a href="{{ url_for('admin_subscribe', user_id=user.id) }}" class="btn btn-sm btn-primary mb-1">Subscribe</a>
+                    {% else %}
+                        <a href="{{ url_for('admin_unsubscribe', user_id=user.id) }}" class="btn btn-sm btn-warning mb-1">Unsubscribe</a>
+                    {% endif %}
+                    <a href="{{ url_for('admin_delete', user_id=user.id) }}" class="btn btn-sm btn-danger mb-1"
+                       onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
